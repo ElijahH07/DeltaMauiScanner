@@ -14,6 +14,7 @@
         Text="temp button to open popup for final score"
         Clicked="OnCounterClicked"
         />
+        <!--
         <ListView x:Name ="GameList" Grid.Row="1" ItemsSource="{}">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -21,10 +22,12 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        -->
+        
         <Button
         Text="Count+=1"
         Clicked="Countmore"
-     />
+         />
 
     </VerticalStackLayout>
 </ContentPage>
