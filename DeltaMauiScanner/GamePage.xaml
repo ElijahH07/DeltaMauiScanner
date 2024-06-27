@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DeltaMauiScanner.GamePage"
+             Title="GamePage">
+    <VerticalStackLayout>
+        <Label 
+        Text="Countdown:"
+        FontFamily="PTSerif-Regular"
+        FontSize="20"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" />
+        <Button
+        Text="temp button to open popup for final score"
+        Clicked="OnCounterClicked"
+        />
+        <ListView x:Name ="GameList" Grid.Row="1" ItemsSource="{}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button
+        Text="Count+=1"
+        Clicked="Countmore"
+     />
+
+    </VerticalStackLayout>
+</ContentPage>

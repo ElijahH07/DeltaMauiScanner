@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             x:Class="DeltaMauiScanner.PopupPage"
+           CanBeDismissedByTappingOutsideOfPopup="False">
+
+    <VerticalStackLayout>
+        <Label 
+            Text="Final Score"
+            Padding="15"
+            Margin="20"
+            FontFamily="PTSerif-Regular"
+            FontSize="30"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        
+        <Button
+            Text="Close" 
+            Clicked="Button_Clicked" 
+            Padding="10" 
+            Margin="20"
+            FontFamily="PTSerif-Regular"
+            FontSize="20"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            />
+    </VerticalStackLayout>
+</mct:Popup>

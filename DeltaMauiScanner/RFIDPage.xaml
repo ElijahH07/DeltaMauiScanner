@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DeltaMauiScanner.RFIDPage"
+             Title="RFIDPage">
+    <Grid RowDefinitions="Auto, *">
+        <!--Label 
+            Text="RFID page i like rfid!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />-->
+        <!-- Row 1: Buttons side by side -->
+        <HorizontalStackLayout Grid.Row="0" HorizontalOptions="Center" Spacing="10">
+            <Button Text="CONNECT" FontSize="18" FontFamily="PTSerif-Regular" Clicked="OnButtonClick"/>
+            <Button Text="CLEAR" FontSize="18" FontFamily="PTSerif-Regular" Clicked="OnClearRFIDTagsButtonClick"/>
+            <Label Text="COUNT:" FontSize="18" FontFamily="PTSerif-Regular" Padding="10"/>
+        </HorizontalStackLayout>
+
+        <!-- Row 2: Inventory List -->
+        <ListView Grid.Row="1" ItemsSource="{Binding RFIDTags}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding TagId}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>
