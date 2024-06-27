@@ -33,10 +33,10 @@ For iOS devices, you can expand the functionality of DeltaMauiScanner by integra
    - See [Maui ios techdocs](https://techdocs.zebra.com/dcs/rfid/maui-ios/getting-started/) for information on connecting via bluetooth to the scanner
    - Copy the following into the Maui .csproj file:
 
-	 <ItemGroup>
-		<Reference Include="MauiIosSdkBinding">
-			<HintPath>path to ios .dll sdk file</HintPath>
-		</Reference>
-	 </ItemGroup>
+	  <ItemGroup>
+	 	 <Reference Include="MauiIosSdkBinding">
+			 <HintPath>path to ios .dll sdk file</HintPath>
+		 </Reference>
+	  </ItemGroup>
 
    - Edit the class under `Platforms/IOS/Models/ScannerConfiguration.cs` to configure the bluetooth connection to the RFD40 Zebra device
