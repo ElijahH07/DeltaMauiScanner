@@ -1,29 +1,31 @@
 ﻿namespace DeltaMauiScanner.Platforms.Android.ViewModels
 {
-    internal class RfidViewModel
+    public class RfidViewModel
     {
+
         public void UpdateRfidListView(string TagId)
         {
+            var rfidpage = RFIDPage.Instance;
+            var rfidTags = rfidpage.RFIDTags;
 
-            var rfidTags = RFIDPage.Instance.RFIDTags;
-            // Check if the tag ID already exists in rfidTags using OriginalTagId
             var existingTag = rfidTags.FirstOrDefault(tag => tag.OriginalTagId == TagId);
-
-            if (existingTag != null) //checks if theres a copy
+            if (existingTag != null)
             {
-                // +1 if tag exists in inventorhy
-                //existingTag.Count++;
-                //existingTag.TagId = "ID:" + TagId + " count:" + existingTag.Count;
-
-                Console.WriteLine(existingTag.TagId); //edited
-
-                //rfidTags.Add(existingTag);
+                existingTag.Count++;
+                existingTag.Id = $"ID:{TagId} Count:{existingTag.Count}";
+                //Console.WriteLine("exists");
+                int i = rfidTags.IndexOf(existingTag);
+                rfidTags[i] = existingTag;
             }
             else
             {
-                //add new tag
-                rfidTags.Add(new RFIDTag { OriginalTagId = TagId, TagId = "ID:" + TagId });  // + "  Count: 1", Count = 1 });
+                rfidTags.Add(new RFIDTag { OriginalTagId = TagId, Id = $"ID:{TagId} Count: 1", Count = 1 });
+                //Console.WriteLine("new");
             }
+
+            // Increment 'total' and synchronize with 'Globals.totalecount'
+            Globals.totalecount++;
+            rfidpage.SetTextForLabel(Globals.totalecount.ToString());
         }
     }
 }

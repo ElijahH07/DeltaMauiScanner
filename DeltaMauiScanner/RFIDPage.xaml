@@ -4,22 +4,19 @@
              x:Class="DeltaMauiScanner.RFIDPage"
              Title="RFIDPage">
     <Grid RowDefinitions="Auto, *">
-        <!--Label 
-            Text="RFID page i like rfid!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />-->
+
         <!-- Row 1: Buttons side by side -->
         <HorizontalStackLayout Grid.Row="0" HorizontalOptions="Center" Spacing="10">
             <Button Text="CONNECT" FontSize="18" FontFamily="PTSerif-Regular" Clicked="OnButtonClick"/>
             <Button Text="CLEAR" FontSize="18" FontFamily="PTSerif-Regular" Clicked="OnClearRFIDTagsButtonClick"/>
-            <Label Text="COUNT:" FontSize="18" FontFamily="PTSerif-Regular" Padding="10"/>
+            <Label x:Name="counttotal" Text="TOTAL: " FontSize="18" FontFamily="PTSerif-Regular"/>
         </HorizontalStackLayout>
 
         <!-- Row 2: Inventory List -->
-        <ListView Grid.Row="1" ItemsSource="{Binding RFIDTags}">
+        <ListView x:Name ="RFIDList" Grid.Row="1" ItemsSource="{Binding RFIDTags}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding TagId}" />
+                    <TextCell Text="{Binding Id}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

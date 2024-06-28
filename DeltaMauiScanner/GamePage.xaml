@@ -11,8 +11,12 @@
         VerticalOptions="Center" 
         HorizontalOptions="Center" />
         <Button
-        Text="temp button to open popup for final score"
+        Text="popup for final score"
         Clicked="OnCounterClicked"
+        Padding="15"
+        FontFamily="PTSerif-Regular"
+        FontSize="25"
+        HorizontalOptions="Fill"
         />
         <!--
         <ListView x:Name ="GameList" Grid.Row="1" ItemsSource="{}">
@@ -27,6 +31,10 @@
         <Button
         Text="Count+=1"
         Clicked="Countmore"
+        Padding="15"
+        FontFamily="PTSerif-Regular"
+        FontSize="25"
+        HorizontalOptions="Fill"
          />
 
     </VerticalStackLayout>

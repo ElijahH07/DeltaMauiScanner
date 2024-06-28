@@ -1,25 +1,35 @@
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using DeltaMauiScanner.ScannerConfigurations;
+using DeltaMauiScanner;
 
 namespace DeltaMauiScanner;
 
-public partial class RFIDPage : ContentPage
+public partial class RFIDPage : ContentPage, INotifyPropertyChanged
 {
+
     ScannerConfiguration config = new ScannerConfiguration();
 
     private static RFIDPage instance;
     public ObservableCollection<RFIDTag> RFIDTags { get; set; }
-    private RFIDPage() { 
-        
+
+
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+    public RFIDPage()
+    {
         InitializeComponent();
-
-        RFIDTags = new ObservableCollection<RFIDTag>
-            {
-                //simply just makes the collection for rfidtags
-            };
-
-        // Set the binding context to the current instance
+        RFIDTags = new ObservableCollection<RFIDTag> { };
         BindingContext = this;
+        //int counttotal = Globals.totalecount;
+        //counttotal.Text = counttotal.ToString();
+        //total = Globals.totalecount;
     }
     public static RFIDPage Instance
     {
@@ -33,25 +43,37 @@ public partial class RFIDPage : ContentPage
         }
     }
 
+    public void SetTextForLabel(string mytext)
+    {
+        Device.BeginInvokeOnMainThread(() =>
+        {
+            counttotal.Text = "TOTAL: " + mytext;
+        });
+    }
+
     private void OnClearRFIDTagsButtonClick(object sender, EventArgs e)
     {
-        // Clear all RFID tags from the collection
+        int total = Globals.totalecount;
+        Console.WriteLine(total);
+        total = 0;
         RFIDTags.Clear();
+        Globals.totalecount = total;
+        Console.WriteLine(total);
+        Console.WriteLine(Globals.totalecount);
+        SetTextForLabel(total.ToString());
+        OnPropertyChanged(nameof(total));
     }
 
     private async void OnButtonClick(object sender, EventArgs e)
     {
         config.setUpRfid();
-
     }
-
-    
 }
 
 // Define the RFIDTag class
 public class RFIDTag
 {
-    public string TagId { get; set; }
+    public string Id { get; set; }
     public int Count { get; set; }
-    public string OriginalTagId { get; set; } // This will store the original tag ID
+    public string OriginalTagId { get; set; }
 }
