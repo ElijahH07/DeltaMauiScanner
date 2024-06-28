@@ -6,6 +6,7 @@ using System.Xml;
 using System.Runtime.CompilerServices;
 using Exception = Java.Lang.Exception;
 using System.Diagnostics;
+using DeltaMauiScanner.Platforms.Android.ViewModels;
 
 namespace DeltaMauiScanner.ScannerConfigurations;
 public partial class ScannerConfiguration : Java.Lang.Object, IDcsSdkApiDelegate
@@ -16,6 +17,7 @@ public partial class ScannerConfiguration : Java.Lang.Object, IDcsSdkApiDelegate
     private bool isConnected = false;
     private string deviceName = "RFD40+_22039520101179", sFWVersion;
     public static List<DCSScannerInfo> scannerList = new List<DCSScannerInfo>();
+    BarcodeViewModel BarcodeView = new BarcodeViewModel();
     public partial void setUpBarcode()
     {
         setupSDKHandler(deviceName);
@@ -149,6 +151,8 @@ public partial class ScannerConfiguration : Java.Lang.Object, IDcsSdkApiDelegate
     {
         //BarcodeEvent?.Invoke(System.Text.Encoding.Default.GetString(barcodeData), BarcodeTypes.getBarcodeTypeName(barcodeType));
         Debug.WriteLine("TYPE: "+ BarcodeTypes.getBarcodeTypeName(barcodeType)+"    DATA: " + System.Text.Encoding.Default.GetString(barcodeData));
+
+        BarcodeView.displayData(System.Text.Encoding.Default.GetString(barcodeData));
     }
 
     /// <summary>
