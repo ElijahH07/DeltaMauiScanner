@@ -1,44 +1,60 @@
-using CommunityToolkit.Maui.Views;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using DeltaMauiScanner.ScannerConfigurations;
+using Com.Zebra.Barcode.Sdk;
 
-namespace DeltaMauiScanner;
-
-public partial class GamePage : ContentPage
+namespace DeltaMauiScanner
 {
-    public GamePage()
+    public partial class GamePage : ContentPage, INotifyPropertyChanged
     {
-        InitializeComponent();
-        RunThreads();
-    }
+        private static GamePage instance;
 
-    private void RunThreads()
-    {
-        //Thread t1 = new Thread(() =>
-        //{
-        //    var instance = SharedData.Instance(1,0);
-        //});
+        public ObservableCollection<BarcodeScannerFactory> BarcodeScans { get; set; } = new ObservableCollection<BarcodeScannerFactory>();
 
-        //Thread t2 = new Thread(() =>
-        //{
-        //    var instance = SharedData.Instance(2,0);
-        //});
+        public GamePage()
+        {
+            InitializeComponent();
+            BindingContext = this;
+        }
 
-        //t1.Start();
-        //t2.Start();
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        //t1.Join();
-        //t2.Join();
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
-    }
-    private void Countmore(object sender, EventArgs e)
-    {
-        int x = -500;
-        var sharedInstance = SharedData.Instance(0, 0); // Pass 0 or any default values if initialization is not needed
-        Console.WriteLine($"Current Points: {sharedInstance.Points}");
-        sharedInstance.ChangePoints(x); // Set Points to 100
-        Console.WriteLine($"New Points: {sharedInstance.Points}");
-    }
-    private void OnCounterClicked(object sender, EventArgs e)
-    {
-        this.ShowPopup(new PopupPage());
+        public static GamePage Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GamePage();
+                }
+                return instance;
+            }
+        }
+
+        private void Countmore(object sender, EventArgs e)
+        {
+            int total = Globals.totalpoints;
+            Console.WriteLine(total);
+        }
+
+        private void OnCounterClicked(object sender, EventArgs e)
+        {
+            // Ensure the method ShowPopup is available in your context.
+            // this.ShowPopup(new PopupPage());
+        }
+
+        public void SetTextForPoints(string myText)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                PointTracker.Text = "TOTAL: " + myText;
+            });
+        }
     }
 }

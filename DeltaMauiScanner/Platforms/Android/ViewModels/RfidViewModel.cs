@@ -2,12 +2,10 @@
 {
     public class RfidViewModel
     {
-
         public void UpdateRfidListView(string TagId)
         {
             var rfidpage = RFIDPage.Instance;
             var rfidTags = rfidpage.RFIDTags;
-
             var existingTag = rfidTags.FirstOrDefault(tag => tag.OriginalTagId == TagId);
             if (existingTag != null)
             {

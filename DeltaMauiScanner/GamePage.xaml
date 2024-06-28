@@ -10,6 +10,15 @@
         FontSize="20"
         VerticalOptions="Center" 
         HorizontalOptions="Center" />
+
+        <Label
+            x:Name="PointTracker"
+            Text="POINTS: "
+            FontFamily="PTSerif-Regular"
+            FontSize="20"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+        />
         <Button
         Text="popup for final score"
         Clicked="OnCounterClicked"
