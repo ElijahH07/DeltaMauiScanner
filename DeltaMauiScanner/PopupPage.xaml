@@ -15,6 +15,15 @@
             FontSize="20"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Label 
+            x:Name="Score"
+            Text="0"
+            Padding="5"
+            Margin="5"
+            FontFamily="PressStart2P-Regular"
+            FontSize="50"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
         
         <Button
             Text="Close" 

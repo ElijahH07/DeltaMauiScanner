@@ -3,14 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DeltaMauiScanner.Model_Info"
              Title="Model Information">
-    <VerticalStackLayout>
+    <VerticalStackLayout BackgroundColor="#1a1f3d">
         <Label
             x:Name="infoLabel"
-            Text="hi"
+            Text=""
             VerticalOptions="Center" 
             HorizontalOptions="Center"
-            FontFamily="PTSerif-Regular"
-            FontSize="20"
+            TextColor="#8ECAE6"
+            Padding="0,25,0,25"
+            FontAttributes="Bold"
+            FontSize="25"
+            VerticalTextAlignment="Center"
+            FontFamily="PTSerif-Bold"
          />
     </VerticalStackLayout>
 </ContentPage>

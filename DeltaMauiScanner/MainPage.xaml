@@ -63,6 +63,8 @@
                 FontFamily="PTSerif-Regular"
                 HorizontalOptions="End"
                 VerticalOptions="EndAndExpand"
+                HeightRequest="50"
+                WidthRequest="50"
                 Margin="0,0,0,0" />
 
         </VerticalStackLayout>

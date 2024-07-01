@@ -20,7 +20,8 @@
             HorizontalOptions="Center" 
             TextColor="White"/>
             <Label 
-            Text="Countdown:"
+            x:Name="countDown"
+            Text="Countdown: 00:00"
             FontFamily="PressStart2P-Regular"
             FontSize="15"
             VerticalOptions="Center" 
@@ -37,10 +38,10 @@
             TextColor="White"/>
 
             <Button
-            Text="popup for final score"
-            Clicked="onPopupClicked"
+            Text="Start Game"
+            Clicked="onStartClicked"
             Padding="15"
-            FontFamily="PTSerif-Regular"
+            FontFamily="PressStart2P-Regular"
             FontSize="25"
             HorizontalOptions="Fill"/>
         </VerticalStackLayout>

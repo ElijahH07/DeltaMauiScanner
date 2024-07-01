@@ -14,7 +14,12 @@ namespace DeltaMauiScanner;
 
 public partial class GamePage : ContentPage, INotifyPropertyChanged
 {
+    private int timerLength = 5;
     private ObservableCollection<Barcode> _barcodes;
+    private TimeSpan _elapsedTime;
+    private Timer _timer;
+    private bool _isTimerRunning;
+    ScannerConfiguration config = new ScannerConfiguration();
 
     public ObservableCollection<Barcode> Barcodes
     {
@@ -68,14 +73,6 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    private async void onPopupClicked(object sender, EventArgs e)
-    {
-        var popup = new PopupPage();
-
-        this.ShowPopup(popup);
-
-    }
-
     public void SetTextForPoints(string myText)
     {
         Device.BeginInvokeOnMainThread(() =>
@@ -84,6 +81,69 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
         });
             
     }
+    public void clearBarcodes()
+    {
+        Barcodes.Clear();
+    }
+    // Creating the Timer
+
+    public void onStartClicked(object sender, EventArgs e)
+    {
+        if (!_isTimerRunning)
+        {
+            config.setUpBarcode();
+            _elapsedTime = TimeSpan.Zero;
+            _timer = new Timer(TimerCallback, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+            _isTimerRunning = true;
+
+            // Automatically stop the timer after 15 seconds
+            Device.StartTimer(TimeSpan.FromSeconds(timerLength-1), () =>
+            {
+                StopTimer();
+                return false; // Stop recurring timer
+            });
+        }
+    }
+
+    private void StopTimer()
+    {
+        _timer.Dispose();
+        _isTimerRunning = false;
+
+        // Call your end function here
+        endFunction();
+    }
+
+    private void TimerCallback(object state)
+    {
+        _elapsedTime = _elapsedTime.Add(TimeSpan.FromSeconds(1));
+        UpdateTimerLabel();
+    }
+
+    private void UpdateTimerLabel()
+    {
+        Device.BeginInvokeOnMainThread(() =>
+        {
+            countDown.Text = "CountDown: "+_elapsedTime.ToString(@"mm\:ss");
+        });
+    }
+
+    public void endFunction()
+    {
+        config.disconnectScanner();
+
+        clearBarcodes();
+        SetTextForPoints("0");
+        Device.BeginInvokeOnMainThread(() =>
+        {
+            countDown.Text = "CountDown: 00:00" ;
+        });
+
+        var popup = new PopupPage();
+
+        this.ShowPopup(popup);
+    }
+
 }
 
 public class Barcode

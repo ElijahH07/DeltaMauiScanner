@@ -12,4 +12,8 @@ public partial class ScannerConfiguration
     {
         Debug.WriteLine("setup not implemented");
     }
+    public partial void disconnectScanner()
+    {
+
+    }
 }

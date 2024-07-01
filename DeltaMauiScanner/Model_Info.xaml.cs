@@ -8,12 +8,14 @@ public partial class Model_Info : ContentPage
 	{
 		InitializeComponent();
 
+        Shell.SetNavBarIsVisible(this, false);
+
         infoLabel.Text = getInfo();
     }
 
 	private string getInfo()
 	{
-        return $"Device Model: {DeviceInfoService.Model()}\nPlatform: {DeviceInfoService.Platform()}";
+        return $"Device Model: \n {DeviceInfoService.Model()}\n \n Platform: \n {DeviceInfoService.Platform()}";
 
     }
 }

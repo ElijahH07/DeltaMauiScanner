@@ -109,13 +109,13 @@ public partial class ScannerConfiguration : Java.Lang.Object, IDcsSdkApiDelegate
     /// <summary>
     /// Disonnect to the scanner
     /// </summary>
-    public void DisconnectScanner(string hostName)
+    public partial void disconnectScanner()
     {
-        if (hostName != null)
+        if (deviceName != null)
         {
             foreach (DCSScannerInfo device in scannerList)
             {
-                if (device.ScannerName.Contains(hostName))
+                if (device.ScannerName.Contains(deviceName))
                 {
                     try
                     {

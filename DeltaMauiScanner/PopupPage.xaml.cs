@@ -6,7 +6,9 @@ public partial class PopupPage : Popup
 	public PopupPage()
 	{
 		InitializeComponent();
-        //this.Padding = new Thickness(20, 0);
+        Score.Text = Globals.totalpoints.ToString();
+        Globals.totalpoints= 0;
+
     }
 
     private void Button_Clicked(object sender, EventArgs e)
