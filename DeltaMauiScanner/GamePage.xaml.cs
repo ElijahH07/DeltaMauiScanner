@@ -51,10 +51,7 @@ namespace DeltaMauiScanner
 
         public void SetTextForPoints(string myText)
         {
-            Device.BeginInvokeOnMainThread(() =>
-            {
                 PointTracker.Text = "TOTAL: " + myText;
-            });
         }
     }
 }
