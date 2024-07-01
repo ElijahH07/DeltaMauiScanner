@@ -8,60 +8,85 @@ using System.Diagnostics;
 using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Maui.Core;
 
-namespace DeltaMauiScanner
+using DeltaMauiScanner;
+
+namespace DeltaMauiScanner;
+
+public partial class GamePage : ContentPage, INotifyPropertyChanged
 {
-    public partial class GamePage : ContentPage, INotifyPropertyChanged
+    private ObservableCollection<Barcode> _barcodes;
+
+    public ObservableCollection<Barcode> Barcodes
     {
-        private static GamePage instance;
-
-        public ObservableCollection<BarcodeScannerFactory> BarcodeScans { get; set; } = new ObservableCollection<BarcodeScannerFactory>();
-       
-
-        public GamePage()
+        get { return _barcodes; }
+        set
         {
-            InitializeComponent();
-            BindingContext = this;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public static GamePage Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new GamePage();
-                }
-                return instance;
-            }
-        }
-
-        private void Countmore(object sender, EventArgs e)
-        {
-            int total = Globals.totalpoints;
-            Console.WriteLine(total);
-        }
-
-        private async void onPopupClicked(object sender, EventArgs e)
-        {
-            //bool ans = await DisplayAlert("Question?", "Would you like to play again?", "yes", "no");
-            //Debug.WriteLine("answer: " + ans);
-            //await Shell.Current.CurrentPage.ShowPopupAsync(new PopupPage());
-            var popup = new PopupPage();
-
-            this.ShowPopup(popup);
-
-        }
-
-        public void SetTextForPoints(string myText)
-        {
-                PointTracker.Text = "TOTAL: " + myText;
+            _barcodes = value;
+            OnPropertyChanged();
         }
     }
+
+    public GamePage()
+    {
+        InitializeComponent();
+        Shell.SetNavBarIsVisible(this, false);
+
+        // Initialize the ObservableCollection
+        Barcodes = new ObservableCollection<Barcode>();
+
+        // Set the BindingContext to this page
+        BindingContext = this;
+    }
+
+    // Singleton instance (if needed)
+    private static GamePage instance;
+
+    public static GamePage Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GamePage();
+            }
+            return instance;
+        }
+    }
+
+    // Method to add a barcode to the collection
+    public void AddBarcode(string data)
+    {
+        // Add a new Barcode object to the collection
+        Barcodes.Add(new Barcode { BData = data });
+    }
+
+    // Implement INotifyPropertyChanged interface
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    private async void onPopupClicked(object sender, EventArgs e)
+    {
+        var popup = new PopupPage();
+
+        this.ShowPopup(popup);
+
+    }
+
+    public void SetTextForPoints(string myText)
+    {
+        Device.BeginInvokeOnMainThread(() =>
+        {
+            PointTracker.Text = "TOTAL: " + myText;
+        });
+            
+    }
+}
+
+public class Barcode
+{
+    public string BData { get; set; }
 }

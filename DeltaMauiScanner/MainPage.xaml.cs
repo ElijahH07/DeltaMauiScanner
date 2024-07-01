@@ -35,7 +35,8 @@ namespace DeltaMauiScanner
         private async void OnGameButtonClick(object sender, EventArgs e)
         {
             config.setUpBarcode();
-            await Navigation.PushAsync(new GamePage());
+            var gamePageInstance = GamePage.Instance;
+            Navigation.PushAsync(gamePageInstance);
         }
 
     }

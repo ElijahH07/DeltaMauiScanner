@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,11 @@ namespace DeltaMauiScanner.Platforms.Android.ViewModels
                 return;
             }
 
+            gamepage.AddBarcode(barcodeData);
+
+
+            Debug.WriteLine("adding to list");
+
             if (barcodeData.Contains("BAD"))
             {
                 Globals.totalpoints += 50;
@@ -32,7 +38,6 @@ namespace DeltaMauiScanner.Platforms.Android.ViewModels
             {
                 Console.WriteLine("power up");
             }
-            Console.WriteLine(Globals.totalpoints + "h");
 
             gamepage.SetTextForPoints(Globals.totalpoints.ToString());
         }

@@ -10,13 +10,13 @@
             <Button Text="CONNECT" FontSize="18" FontFamily="PTSerif-Regular" Clicked="OnButtonClick"/>
             <Button Text="CLEAR" FontSize="18" FontFamily="PTSerif-Regular" Clicked="OnClearRFIDTagsButtonClick"/>
             <Label x:Name="counttotal" Text="TOTAL: " FontSize="18" FontFamily="PTSerif-Regular"/>
-        </HorizontalStackLayout>
+        </HorizontalStackLayout> 
 
         <!-- Row 2: Inventory List -->
         <ListView x:Name ="RFIDList" Grid.Row="1" ItemsSource="{Binding RFIDTags}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Id}" />
+                    <TextCell Text="{Binding Id}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
