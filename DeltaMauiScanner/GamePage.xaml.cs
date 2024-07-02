@@ -14,12 +14,11 @@ namespace DeltaMauiScanner;
 
 public partial class GamePage : ContentPage, INotifyPropertyChanged
 {
-    private int timerLength = 5;
+    private int timerLength = 15;
     private ObservableCollection<Barcode> _barcodes;
     private TimeSpan _elapsedTime;
     private Timer _timer;
     private bool _isTimerRunning;
-    ScannerConfiguration config = new ScannerConfiguration();
 
     public ObservableCollection<Barcode> Barcodes
     {
@@ -62,7 +61,12 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
     public void AddBarcode(string data)
     {
         // Add a new Barcode object to the collection
-        Barcodes.Add(new Barcode { BData = data });
+        //Barcodes.Add(new Barcode { BData = data });
+        var existingBarcode = Barcodes.FirstOrDefault(barcode => barcode.Id.Contains(data[0]));
+        if (existingBarcode == null) 
+        {
+            Barcodes.Add(new Barcode { BData = data.Substring(1), Id = data[0].ToString() });
+        }
     }
 
     // Implement INotifyPropertyChanged interface
@@ -85,13 +89,14 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
     {
         Barcodes.Clear();
     }
+
+
     // Creating the Timer
 
     public void onStartClicked(object sender, EventArgs e)
     {
         if (!_isTimerRunning)
         {
-            config.setUpBarcode();
             _elapsedTime = TimeSpan.Zero;
             _timer = new Timer(TimerCallback, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
             _isTimerRunning = true;
@@ -124,19 +129,19 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
     {
         Device.BeginInvokeOnMainThread(() =>
         {
-            countDown.Text = "CountDown: "+_elapsedTime.ToString(@"mm\:ss");
+            int res = timerLength - int.Parse(_elapsedTime.ToString(@"ss"));
+            countDown.Text = "CountDown: " + res + " s";
         });
     }
 
     public void endFunction()
     {
-        config.disconnectScanner();
 
         clearBarcodes();
         SetTextForPoints("0");
         Device.BeginInvokeOnMainThread(() =>
         {
-            countDown.Text = "CountDown: 00:00" ;
+            countDown.Text = "CountDown: " + timerLength +" s";
         });
 
         var popup = new PopupPage();
@@ -149,4 +154,5 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
 public class Barcode
 {
     public string BData { get; set; }
+    public string Id { get; set; }
 }

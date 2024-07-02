@@ -27,6 +27,9 @@ public partial class RFIDPage : ContentPage, INotifyPropertyChanged
         InitializeComponent();
         RFIDTags = new ObservableCollection<RFIDTag> { };
         BindingContext = this;
+        //int counttotal = Globals.totalecount;
+        //counttotal.Text = counttotal.ToString();
+        //total = Globals.totalecount;
     }
     public static RFIDPage Instance
     {

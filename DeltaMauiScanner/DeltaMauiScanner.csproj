@@ -57,6 +57,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\cour.ttf" />
 	  <None Remove="Resources\Fonts\PressStart2P-Regular.ttf" />
 	</ItemGroup>
 

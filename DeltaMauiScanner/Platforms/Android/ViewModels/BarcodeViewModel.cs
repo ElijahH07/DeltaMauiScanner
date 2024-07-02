@@ -21,18 +21,13 @@ namespace DeltaMauiScanner.Platforms.Android.ViewModels
 
             gamepage.AddBarcode(barcodeData);
 
-
-            Debug.WriteLine("adding to list");
-
             if (barcodeData.Contains("BAD"))
             {
                 Globals.totalpoints += 50;
-                Console.WriteLine("found bad guy");
             } 
             else if(barcodeData.Contains("GOOD"))
             {
                 Globals.totalpoints -= 20;
-                Console.WriteLine("found good guy");
             }
             else
             {

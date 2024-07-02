@@ -12,16 +12,17 @@
         BackgroundColor="Black">
 
             <Label 
+                Margin="0, 20, 0, 0"
             Text="DeltaScanner"
             Padding="5"
             FontFamily="PressStart2P-Regular"
-            FontSize="23"
+            FontSize="26"
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
             TextColor="White"/>
             <Label 
             x:Name="countDown"
-            Text="Countdown: 00:00"
+            Text="Countdown: 15 s"
             FontFamily="PressStart2P-Regular"
             FontSize="15"
             VerticalOptions="Center" 
@@ -43,14 +44,17 @@
             Padding="15"
             FontFamily="PressStart2P-Regular"
             FontSize="25"
-            HorizontalOptions="Fill"/>
+            HorizontalOptions="Fill"
+            Margin="0,0,0,10"/>
         </VerticalStackLayout>
 
         <!-- Row 2: Inventory List -->
         <ListView x:Name ="GameList" Grid.Row="1" ItemsSource="{Binding Barcodes}" SelectionMode="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding BData}" TextColor="White"/>
+                    <ViewCell>
+                        <Label Text="{Binding BData}" FontFamily="PressStart2P-Regular" TextColor="white" FontSize="15" Margin="25,15,0,0"/>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

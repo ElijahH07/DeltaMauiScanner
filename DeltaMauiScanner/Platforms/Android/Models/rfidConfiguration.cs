@@ -50,6 +50,20 @@ public partial class ScannerConfiguration : Java.Lang.Object, IRfidEventsListene
 
     }
 
+    public partial void disconnectRfid()
+    {
+        try
+        {
+            if (Reader != null)
+            {
+                Reader.Disconnect();
+            }
+        } catch(Exception)
+        {
+            System.Diagnostics.Debug.WriteLine("error occured disconnecting rfid scanner");
+        }
+    }
+
     private void GetAvailableReaders()
     {
         ThreadPool.QueueUserWorkItem(o =>
