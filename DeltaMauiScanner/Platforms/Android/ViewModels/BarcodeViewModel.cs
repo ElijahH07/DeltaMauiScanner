@@ -19,22 +19,23 @@ namespace DeltaMauiScanner.Platforms.Android.ViewModels
                 return;
             }
 
-            gamepage.AddBarcode(barcodeData);
+            if (gamepage.AddBarcode(barcodeData))
+            {
+                if (barcodeData.Contains("BAD"))
+                {
+                    Globals.totalpoints += 50;
+                }
+                else if (barcodeData.Contains("GOOD"))
+                {
+                    Globals.totalpoints -= 20;
+                }
+                else
+                {
+                    Console.WriteLine("power up");
+                }
 
-            if (barcodeData.Contains("BAD"))
-            {
-                Globals.totalpoints += 50;
-            } 
-            else if(barcodeData.Contains("GOOD"))
-            {
-                Globals.totalpoints -= 20;
+                gamepage.SetTextForPoints(Globals.totalpoints.ToString());
             }
-            else
-            {
-                Console.WriteLine("power up");
-            }
-
-            gamepage.SetTextForPoints(Globals.totalpoints.ToString());
         }
     }
 }

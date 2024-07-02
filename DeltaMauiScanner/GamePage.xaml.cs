@@ -58,7 +58,7 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
     }
 
     // Method to add a barcode to the collection
-    public void AddBarcode(string data)
+    public bool AddBarcode(string data)
     {
         // Add a new Barcode object to the collection
         //Barcodes.Add(new Barcode { BData = data });
@@ -66,7 +66,9 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
         if (existingBarcode == null) 
         {
             Barcodes.Add(new Barcode { BData = data.Substring(1), Id = data[0].ToString() });
+            return true;
         }
+        return false;
     }
 
     // Implement INotifyPropertyChanged interface
@@ -155,4 +157,5 @@ public class Barcode
 {
     public string BData { get; set; }
     public string Id { get; set; }
+    public string ImageSource { get; set; }
 }
