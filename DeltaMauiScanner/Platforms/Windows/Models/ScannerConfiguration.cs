@@ -16,4 +16,8 @@ public partial class ScannerConfiguration
     {
 
     }
+    public partial void disconnectRfid()
+    {
+
+    }
 }

@@ -13,10 +13,12 @@
         </HorizontalStackLayout> 
 
         <!-- Row 2: Inventory List -->
-        <ListView x:Name ="RFIDList" Grid.Row="1" ItemsSource="{Binding RFIDTags}">
+        <ListView x:Name ="RFIDList" Grid.Row="1" ItemsSource="{Binding RFIDTags}" SelectionMode="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Id}"/>
+                    <ViewCell>
+                        <Label Text="{Binding Id}" FontFamily="cour" TextColor="black" FontSize="15"/>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

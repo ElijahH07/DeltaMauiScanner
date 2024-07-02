@@ -10,4 +10,5 @@ public partial class ScannerConfiguration
     public partial void setUpRfid();
     public partial void setUpBarcode();
     public partial void disconnectScanner();
+    public partial void disconnectRfid();
 }

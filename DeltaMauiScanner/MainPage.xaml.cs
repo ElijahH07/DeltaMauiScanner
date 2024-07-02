@@ -27,6 +27,7 @@ namespace DeltaMauiScanner
 
         private async void OnRFIDButtonClick(object sender, EventArgs e)
         {
+            config.disconnectScanner();
             config.setUpRfid();
             var rfidPageInstance = RFIDPage.Instance;
             Navigation.PushAsync(rfidPageInstance);
@@ -34,7 +35,8 @@ namespace DeltaMauiScanner
 
         private async void OnGameButtonClick(object sender, EventArgs e)
         {
-            //config.setUpBarcode();
+            config.disconnectRfid();
+            config.setUpBarcode();
             var gamePageInstance = GamePage.Instance;
             Navigation.PushAsync(gamePageInstance);
         }
