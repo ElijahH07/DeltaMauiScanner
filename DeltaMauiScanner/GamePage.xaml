@@ -40,6 +40,7 @@
             TextColor="White"/>
 
             <Button
+            x:Name="StartGameButton"
             Text="Start Game"
             Clicked="onStartClicked"
             Padding="15"

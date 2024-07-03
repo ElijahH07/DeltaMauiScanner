@@ -30,11 +30,11 @@ namespace DeltaMauiScanner.Platforms.Android.ViewModels
                     Globals.totalpoints -= 20;
                 }
                 else if (barcodeData.Contains("POWER")) {
-                    gamepage.ExtendTimer();
+                    Globals.totalTime += 5;
                 }
                 else
                 {
-                    Console.WriteLine("power up");
+                    Console.WriteLine("smth else idk");
                 }
 
                 gamepage.SetTextForPoints(Globals.totalpoints.ToString());

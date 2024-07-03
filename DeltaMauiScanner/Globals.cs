@@ -11,6 +11,7 @@ namespace DeltaMauiScanner
         public static int totalecount = 0;
 
         public static int totalpoints = 0;
+        public static int totalTime { get; set; } = 15;
         public static string scannedBarcodes { get; set; } = "";
 
     }
