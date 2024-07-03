@@ -2,8 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="GamePage"
              x:Class="DeltaMauiScanner.GamePage"
-             Title="GamePage">
+             NavigationPage.HasNavigationBar="True"
+             >
     <Grid RowDefinitions="Auto, *" BackgroundColor="black">
         <VerticalStackLayout
         Grid.Row="0"
@@ -12,17 +14,17 @@
         BackgroundColor="Black">
 
             <Label 
-                Margin="0, 20, 0, 0"
+            Margin="0, 20, 0, 0"
             Text="DeltaScanner"
             Padding="5"
             FontFamily="PressStart2P-Regular"
-            FontSize="26"
+            FontSize="23"
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
             TextColor="White"/>
             <Label 
             x:Name="countDown"
-            Text="Countdown: 15 s"
+            Text="COUNTDOWN: 15 s"
             FontFamily="PressStart2P-Regular"
             FontSize="15"
             VerticalOptions="Center" 
@@ -39,6 +41,8 @@
             TextColor="White"/>
 
             <Button
+            x:Name="StartGameButton"
+            IsVisible="true"
             Text="Start Game"
             Clicked="onStartClicked"
             Padding="15"

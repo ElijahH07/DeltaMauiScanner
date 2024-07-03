@@ -53,7 +53,8 @@
                 SemanticProperties.Hint="goes to game page"
                 HorizontalOptions="Fill"
                 Margin="0,0,0,0"
-            />      
+            />
+
 
             <Button
                 x:Name="ModelBtn"

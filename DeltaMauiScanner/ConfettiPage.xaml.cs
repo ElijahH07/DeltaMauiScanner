@@ -1,8 +1,8 @@
 namespace DeltaMauiScanner;
 
-public partial class NewPage1 : ContentPage
+public partial class ConfettiPage
 {
-	public NewPage1()
+	public ConfettiPage()
 	{
 		InitializeComponent();
 	}

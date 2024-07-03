@@ -31,6 +31,7 @@ namespace DeltaMauiScanner.Platforms.Android.ViewModels
                 }
                 else
                 {
+                    Globals.totaltime += 5;
                     Console.WriteLine("power up");
                 }
 

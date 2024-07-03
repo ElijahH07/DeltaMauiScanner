@@ -74,16 +74,19 @@
 		<Reference Include="MauiJavaSdkBinding">
 			<HintPath>rfidsdk\MauiJavaSdkBinding.dll</HintPath>
 		</Reference>
+		<Reference Include="Particle.Maui">
+		  <HintPath>rfidsdk\Particle.Maui.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 
 	<ItemGroup>
+		<MauiXaml Update="ConfettiPage.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 		<MauiXaml Update="GamePage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Model_Info.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="NewPage1.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="PopupPage.xaml">

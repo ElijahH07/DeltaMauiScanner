@@ -41,6 +41,8 @@ namespace DeltaMauiScanner
             Navigation.PushAsync(gamePageInstance);
         }
 
+
+
     }
 
 }

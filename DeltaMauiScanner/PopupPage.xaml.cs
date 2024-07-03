@@ -7,7 +7,8 @@ public partial class PopupPage : Popup
 	{
 		InitializeComponent();
         Score.Text = Globals.totalpoints.ToString();
-        Globals.totalpoints= 0;
+        Highest.Text = "Best Score:"+ Globals.bestscore.ToString();
+        //Globals.totalpoints= 0;
 
     }
 

@@ -5,35 +5,47 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="DeltaMauiScanner.PopupPage"
              CanBeDismissedByTappingOutsideOfPopup="false">
-
     <VerticalStackLayout>
         <Label 
-            Text="Final Score: "
-            Padding="15"
-            Margin="20"
-            FontFamily="PressStart2P-Regular"
-            FontSize="20"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        Text="Final Score"
+        Padding="15"
+        Margin="20"
+        FontFamily="PressStart2P-Regular"
+        FontSize="20"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" />
         <Label 
-            x:Name="Score"
-            Text="0"
-            Padding="5"
-            Margin="5"
-            FontFamily="PressStart2P-Regular"
-            FontSize="50"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        
-        <Button
-            Text="Close" 
-            Clicked="Button_Clicked" 
-            Padding="15" 
+        x:Name="Score"
+        Text="0"
+        Padding="5"
+        Margin="5"
+        FontFamily="PressStart2P-Regular"
+        FontSize="50"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" />
+
+       
+        <Label
+            x:Name="Highest"
+            Text="Best Score: 0"
+            Padding="5" 
             Margin="10"
             FontFamily="PressStart2P-Regular"
-            FontSize="20"
+            FontSize="15"
             VerticalOptions="Center" 
             HorizontalOptions="Center"
             />
+        <Button
+             Text="Close" 
+             Clicked="Button_Clicked" 
+             Padding="15" 
+             Margin="10"
+             FontFamily="PressStart2P-Regular"
+             FontSize="20"
+             VerticalOptions="Center" 
+             HorizontalOptions="Center"
+             /> 
+
+
     </VerticalStackLayout>
 </mct:Popup>

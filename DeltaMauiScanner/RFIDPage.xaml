@@ -9,7 +9,7 @@
         <HorizontalStackLayout Grid.Row="0" HorizontalOptions="Center" Spacing="10">
             <Button Text="CONNECT" FontSize="18" FontFamily="PTSerif-Regular" Clicked="OnButtonClick"/>
             <Button Text="CLEAR" FontSize="18" FontFamily="PTSerif-Regular" Clicked="OnClearRFIDTagsButtonClick"/>
-            <Label x:Name="counttotal" Text="TOTAL: " FontSize="18" FontFamily="PTSerif-Regular"/>
+            <Label x:Name="counttotal" Text="TOTAL: " FontSize="18" FontFamily="PTSerif-Regular" Margin="0,10,0,0"/>
         </HorizontalStackLayout> 
 
         <!-- Row 2: Inventory List -->

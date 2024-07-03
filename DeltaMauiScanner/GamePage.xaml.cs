@@ -1,20 +1,14 @@
+using CommunityToolkit.Maui.Views;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using CommunityToolkit;
-using DeltaMauiScanner.ScannerConfigurations;
-using Com.Zebra.Barcode.Sdk;
-using System.Diagnostics;
-using CommunityToolkit.Maui.Views;
-using CommunityToolkit.Maui.Core;
-
 using DeltaMauiScanner;
 
 namespace DeltaMauiScanner;
 
 public partial class GamePage : ContentPage, INotifyPropertyChanged
 {
-    private int timerLength = 15;
+    private int timerLength = Globals.totaltime;
     private ObservableCollection<Barcode> _barcodes;
     private TimeSpan _elapsedTime;
     private Timer _timer;
@@ -63,7 +57,7 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
         // Add a new Barcode object to the collection
         //Barcodes.Add(new Barcode { BData = data });
         var existingBarcode = Barcodes.FirstOrDefault(barcode => barcode.Id.Contains(data[0]));
-        if (existingBarcode == null) 
+        if (existingBarcode == null)
         {
             Barcodes.Add(new Barcode { BData = data.Substring(1), Id = data[0].ToString() });
             return true;
@@ -85,7 +79,7 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
         {
             PointTracker.Text = "TOTAL: " + myText;
         });
-            
+
     }
     public void clearBarcodes()
     {
@@ -97,6 +91,9 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
 
     public void onStartClicked(object sender, EventArgs e)
     {
+        Globals.totalpoints = 0;
+        StartGameButton.IsVisible = false; // Make the button disappear when clicked
+
         if (!_isTimerRunning)
         {
             _elapsedTime = TimeSpan.Zero;
@@ -104,13 +101,15 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
             _isTimerRunning = true;
 
             // Automatically stop the timer after 15 seconds
-            Device.StartTimer(TimeSpan.FromSeconds(timerLength-1), () =>
+            Device.StartTimer(TimeSpan.FromSeconds(Globals.totaltime - 1), () =>
             {
                 StopTimer();
+                StartGameButton.IsVisible = true; // Make the button reappear when the timer stops
                 return false; // Stop recurring timer
             });
         }
     }
+
 
     private void StopTimer()
     {
@@ -129,6 +128,7 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
 
     private void UpdateTimerLabel()
     {
+        timerLength = Globals.totaltime;
         Device.BeginInvokeOnMainThread(() =>
         {
             int res = timerLength - int.Parse(_elapsedTime.ToString(@"ss"));
@@ -138,13 +138,20 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
 
     public void endFunction()
     {
-
         clearBarcodes();
         SetTextForPoints("0");
         Device.BeginInvokeOnMainThread(() =>
         {
-            countDown.Text = "CountDown: " + timerLength +" s";
+            Globals.totaltime = 15;
+            countDown.Text = "CountDown: " + Globals.totaltime + " s";
         });
+
+        Console.WriteLine(Globals.totalpoints);
+        
+        if (Globals.totalpoints > Globals.bestscore)
+        {
+            Globals.bestscore = Globals.totalpoints;
+        }
 
         var popup = new PopupPage();
 
