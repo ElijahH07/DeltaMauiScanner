@@ -61,13 +61,18 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
     {
         // Add a new Barcode object to the collection
         //Barcodes.Add(new Barcode { BData = data });
-        var existingBarcode = Barcodes.FirstOrDefault(barcode => barcode.Id.Contains(data[0]));
-        if (existingBarcode == null) 
+        if (Globals.gameRunning)
         {
-            Barcodes.Add(new Barcode { BData = data.Substring(1), Id = data[0].ToString() });
-            return true;
+            var existingBarcode = Barcodes.FirstOrDefault(barcode => barcode.Id.Contains(data[0]));
+            if (existingBarcode == null)
+            {
+                Barcodes.Add(new Barcode { BData = data.Substring(1), Id = data[0].ToString() });
+                return true;
+            }
+            return false;
         }
         return false;
+   
     }
 
     // Implement INotifyPropertyChanged interface
@@ -96,6 +101,8 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
 
     public void onStartClicked(object sender, EventArgs e)
     {
+        Globals.gameRunning = true;
+
         Globals.totalTime = 15;
 
         Globals.totalpoints = 0;
@@ -152,6 +159,12 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
         clearBarcodes();
         SetTextForPoints("0");
         Globals.totalTime = 15;
+        Globals.gameRunning = false;
+
+        if (Globals.totalpoints > Globals.bestScore)
+        {
+            Globals.bestScore = Globals.totalpoints;
+        }
 
         Device.BeginInvokeOnMainThread(() =>
         {

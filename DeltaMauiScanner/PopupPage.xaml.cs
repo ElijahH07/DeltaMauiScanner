@@ -9,24 +9,12 @@ public partial class PopupPage : Popup
         Score.Text = Globals.totalpoints.ToString();
         Globals.totalpoints= 0;
 
+        highest.Text = "Best Score: " +Globals.bestScore.ToString();
+
     }
 
     private void Button_Clicked(object sender, EventArgs e)
     {
 		Close();
     }
-
-    //protected override void OnAppearing()
-    //{
-    //    base.OnAppearing();
-
-    //    MyParticleCanvas.IsRunning = true;
-    //}
-
-    //protected override void OnDisappearing()
-    //{
-    //    base.OnDisappearing();
-
-    //    MyParticleCanvas.IsRunning = false;
-    //}
 }

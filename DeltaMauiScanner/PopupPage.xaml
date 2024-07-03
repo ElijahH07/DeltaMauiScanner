@@ -25,6 +25,16 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
+        <Label 
+            x:Name="highest"
+            Text="Best Score: 0"
+            Padding="5"
+            Margin="5"
+            FontFamily="PressStart2P-Regular"
+            FontSize="15"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
         <Button
             Text="Close" 
             Clicked="Button_Clicked" 
