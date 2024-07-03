@@ -97,6 +97,11 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
 
     public void onStartClicked(object sender, EventArgs e)
     {
+        timerLength = 15;
+        StartTimer(timerLength);
+    }
+    private void StartTimer(int seconds)
+    {
         if (!_isTimerRunning)
         {
             _elapsedTime = TimeSpan.Zero;
@@ -104,7 +109,7 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
             _isTimerRunning = true;
 
             // Automatically stop the timer after 15 seconds
-            Device.StartTimer(TimeSpan.FromSeconds(timerLength-1), () =>
+            Device.StartTimer(TimeSpan.FromSeconds(seconds - 1), () =>
             {
                 StopTimer();
                 return false; // Stop recurring timer
@@ -117,7 +122,7 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
         _timer.Dispose();
         _isTimerRunning = false;
 
-        // Call your end function here
+        // Call end function 
         endFunction();
     }
 
@@ -136,11 +141,23 @@ public partial class GamePage : ContentPage, INotifyPropertyChanged
         });
     }
 
+    public void ExtendTimer()
+    {
+        if (_isTimerRunning)
+        {
+            Debug.WriteLine((int)_elapsedTime.TotalSeconds);
+            // Update the timer length (if needed)
+            timerLength = (int)_elapsedTime.TotalSeconds;
+
+        }
+    }
+
     public void endFunction()
     {
 
         clearBarcodes();
         SetTextForPoints("0");
+        timerLength = 15;
         Device.BeginInvokeOnMainThread(() =>
         {
             countDown.Text = "CountDown: " + timerLength +" s";

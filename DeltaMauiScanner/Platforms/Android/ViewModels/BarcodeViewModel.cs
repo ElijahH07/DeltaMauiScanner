@@ -29,6 +29,9 @@ namespace DeltaMauiScanner.Platforms.Android.ViewModels
                 {
                     Globals.totalpoints -= 20;
                 }
+                else if (barcodeData.Contains("POWER")) {
+                    gamepage.ExtendTimer();
+                }
                 else
                 {
                     Console.WriteLine("power up");
