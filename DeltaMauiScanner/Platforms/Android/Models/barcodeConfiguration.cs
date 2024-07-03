@@ -1,8 +1,5 @@
-﻿using Android.Widget;
-using Com.Zebra.Rfid.Api3;
-using Com.Zebra.Scannercontrol;
+﻿using Com.Zebra.Scannercontrol;
 using Java.Lang;
-using System.Xml;
 using System.Runtime.CompilerServices;
 using Exception = Java.Lang.Exception;
 using System.Diagnostics;

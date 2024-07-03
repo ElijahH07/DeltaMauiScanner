@@ -2,7 +2,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using DeltaMauiScanner.ScannerConfigurations;
-using DeltaMauiScanner;
 
 namespace DeltaMauiScanner;
 
@@ -22,15 +21,14 @@ public partial class RFIDPage : ContentPage, INotifyPropertyChanged
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+
     public RFIDPage()
     {
         InitializeComponent();
         RFIDTags = new ObservableCollection<RFIDTag> { };
         BindingContext = this;
-        //int counttotal = Globals.totalecount;
-        //counttotal.Text = counttotal.ToString();
-        //total = Globals.totalecount;
     }
+
     public static RFIDPage Instance
     {
         get
@@ -64,6 +62,7 @@ public partial class RFIDPage : ContentPage, INotifyPropertyChanged
         OnPropertyChanged(nameof(total));
     }
 
+    //reconnect rfid scanner button
     private async void OnButtonClick(object sender, EventArgs e)
     {
         config.setUpRfid();

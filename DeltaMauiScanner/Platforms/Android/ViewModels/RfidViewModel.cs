@@ -1,10 +1,4 @@
-﻿using Com.Zebra.Rfid.Api3;
-using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-
-namespace DeltaMauiScanner.Platforms.Android.ViewModels
+﻿namespace DeltaMauiScanner.Platforms.Android.ViewModels
 {
     public class RfidViewModel
     {

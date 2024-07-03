@@ -1,4 +1,5 @@
 using CommunityToolkit.Maui.Views;
+
 namespace DeltaMauiScanner;
 
 public partial class PopupPage : Popup

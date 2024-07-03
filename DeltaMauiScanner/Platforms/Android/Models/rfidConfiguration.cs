@@ -1,8 +1,4 @@
-﻿using Android.Widget;
-using Com.Zebra.Rfid.Api3;
-using Com.Zebra.Scannercontrol;
-using Java.Nio.FileNio;
-using System.Collections.ObjectModel;
+﻿using Com.Zebra.Rfid.Api3;
 using System.Runtime.CompilerServices;
 using DeltaMauiScanner.Platforms.Android.ViewModels;
 

@@ -1,8 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using DeltaMauiScanner.Services;
-using DeltaMauiScanner.ScannerConfigurations;
-using static System.Net.Mime.MediaTypeNames;
-using System.Diagnostics;
+﻿using DeltaMauiScanner.ScannerConfigurations;
 
 namespace DeltaMauiScanner
 {
@@ -13,10 +9,6 @@ namespace DeltaMauiScanner
         public MainPage()
         {
             InitializeComponent();
-
-            
-            //config.setUpRfid();
-            //config.setUpBarcode();
 
         }
 

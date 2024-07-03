@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DeltaMauiScanner.Services;
+﻿namespace DeltaMauiScanner.Services;
 
 /// <summary>
 ///  Testing partial classes -> gets the Model and Platform of each individual device
